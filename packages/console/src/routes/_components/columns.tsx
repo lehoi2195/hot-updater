@@ -3,15 +3,13 @@ import { extractTimestampFromUUIDv7 } from "@/lib/extract-timestamp-from-uuidv7"
 import type { Bundle } from "@hot-updater/core";
 import type { ColumnDef } from "@tanstack/solid-table";
 import dayjs from "dayjs";
-import { ArrowDown, ArrowUp, Check, Download, Loader2, X } from "lucide-solid";
+import { ArrowDown, ArrowUp, Check, Loader2, X } from "lucide-solid";
 import { createResource, createSignal, Show } from "solid-js";
 import { toast } from "solid-sonner";
 
-const [fileSizesData, { refetch: refetchFileSizes }] = createResource(
-  async () => {
-    return await getFileSizes(["dummy-id"]);
-  }
-);
+const [fileSizesData] = createResource(async () => {
+  return await getFileSizes(["dummy-id"]);
+});
 const mbSize = 1000;
 const formatFileSize = (sizeInBytes: number | undefined | null): string => {
   if (sizeInBytes === undefined || sizeInBytes === null || sizeInBytes === 0)
@@ -80,9 +78,7 @@ export const columns: ColumnDef<Bundle>[] = [
   },
   {
     accessorKey: "platform",
-    header: ({ column }) => (
-      <span class="font-semibold text-gray-700">Platform</span>
-    ),
+    header: () => <span class="font-semibold text-gray-700">Platform</span>,
     size: 100,
     cell: (info) => {
       const platform = String(info.getValue());
@@ -106,9 +102,7 @@ export const columns: ColumnDef<Bundle>[] = [
   },
   {
     accessorKey: "targetAppVersion",
-    header: ({ column }) => (
-      <span class="font-semibold text-gray-700">Version</span>
-    ),
+    header: () => <span class="font-semibold text-gray-700">Version</span>,
     size: 90,
     cell: (info) => (
       <span class="text-xs font-bold bg-gray-100 px-2 py-0.5 rounded inline-block text-center">
@@ -118,7 +112,7 @@ export const columns: ColumnDef<Bundle>[] = [
   },
   {
     accessorKey: "message",
-    header: ({ column }) => (
+    header: () => (
       <span class="font-semibold text-gray-700">Commit Message</span>
     ),
     minSize: 180,
@@ -134,9 +128,7 @@ export const columns: ColumnDef<Bundle>[] = [
   },
   {
     accessorKey: "id",
-    header: ({ column }) => (
-      <span class="font-semibold text-gray-700">Size</span>
-    ),
+    header: () => <span class="font-semibold text-gray-700">Size</span>,
     size: 90,
     minSize: 90,
     cell: (info) => {
@@ -187,9 +179,7 @@ export const columns: ColumnDef<Bundle>[] = [
   },
   {
     accessorKey: "enabled",
-    header: ({ column }) => (
-      <span class="font-semibold text-gray-700">Enabled</span>
-    ),
+    header: () => <span class="font-semibold text-gray-700">Enabled</span>,
     size: 50,
     minSize: 50,
     maxSize: 50,
@@ -210,9 +200,7 @@ export const columns: ColumnDef<Bundle>[] = [
   },
   {
     accessorKey: "shouldForceUpdate",
-    header: ({ column }) => (
-      <span class="font-semibold text-gray-700">Force</span>
-    ),
+    header: () => <span class="font-semibold text-gray-700">Force</span>,
     size: 50,
     minSize: 50,
     maxSize: 50,
