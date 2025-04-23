@@ -46,5 +46,9 @@
       "@hot-updater/sentry-plugin": "workspace:*"
     }
   },
-  "packageManager": "pnpm@10.6.3"
+  "packageManager": "pnpm@10.6.3",
+  "dependencies": {
+    "@hot-updater/cloudflare": "0.16.2",
+    "dotenv": "^16.4.5"
+  }
 }
